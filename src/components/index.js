@@ -1,0 +1,13 @@
+import { Header } from './Header'
+import { Login } from './Login'
+import { Posts } from './Posts'
+import { Register } from './Register'
+import { NewPost } from './NewPost'
+import { Profile } from './Profile'
+
+export { default as Header } from './Header'
+export { default as Login } from './Login'
+export { default as Posts } from './Posts'
+export { default as Register } from './Register'
+export { default as NewPost } from './NewPost'
+export { default as Profile } from './Profile'
