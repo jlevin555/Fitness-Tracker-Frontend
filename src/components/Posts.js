@@ -23,15 +23,18 @@ async function messageUser(postObj, userToken, postID) {
 
 const Posts = ({ token }) => {
     const [posts, setPosts] = useState([])
-
-    const [content, setcontent] = useState();
-
+    const [id, setid] = useState()
+    const [content, setcontent] = useState("");
+    
     const handleSubmit = async event => {
+      console.log("String", event)
         event.preventDefault();
         const obj = {
             message: {content}
         }
-        await messageUser(obj, token, )
+        console.log("String 2", obj)
+        setid(event.target[1].value)
+        await messageUser(obj, token, id)
     }
 
     useEffect(() => {
@@ -43,25 +46,26 @@ const Posts = ({ token }) => {
         fetchData();
       }, []);
     return posts.map((post) => (
-        <option key={post._id} value={post.title}>
+        <div key={post._id}>
             <div>
                 <h4>{post.title}</h4>
-                <div>{post._id}</div>
-                <div>{post.description}</div> 
-                <div>{post.price}</div>
-                <div>{post.location}</div>  
+                <div>Owner: {post._id}</div>
+                <div>Description: {post.description}</div> 
+                <div>Price: {post.price}</div>
+                <div>Location: {post.location}</div>  
                 <div>{post.willDeliver ? "Will Deliver" : "Will not Deliver"}</div>  
                 <form onSubmit={handleSubmit}>
                     <label>
                         <p>Message Owner</p>
-                        <input type="text"/>
+                        <input type="text" onChange={event => {setcontent(event.target.value);console.log("String 3", event.target.value)}}/>
                     </label>
+                    <input id="post-id" value={post._id}></input>
                     <div>
-                        <button type="submit" onChange={event => setcontent(event.target.value)}>Message</button>
+                        <button type="submit" >Send Message</button>
                     </div>
                 </form>
             </div> 
-        </option>
+        </div>
     ))
 
     //renderAllPosts(posts)

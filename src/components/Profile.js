@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 async function userProfile(userToken) {
-    console.log(userToken)
     return fetch('https://strangers-things.herokuapp.com/api/2211-ftb-et-web-pt/users/me', {
       headers: {
         'Content-Type': 'application/json',
@@ -24,15 +23,21 @@ export const Profile = ({ token })  => {
         event.preventDefault();
         const userObj = await userProfile(token);
         setUser(userObj);
-        const Beans = user.data.messages
-        console.log(Beans)
-        container.innerHTML = Beans
-    }
+
+        for (let i = 0; i < 10; i++){
+          let Beans = user.data.messages[i].content
+          let Toast = user.data.messages[i].fromUser.username
+          let Tomato = user.data.messages[i].post.title
+          console.log("String", user.data.messages)
+          container.innerHTML += "From user:" + " " + Toast + " on post:" + " " + Tomato + "<br> message:" + "" + Beans + "<br>"
+          }
+        }
+
     return (
         <form onSubmit={handleSubmit}>
         <div id="container"></div>
         <div>
-          <button type="submit">Messages</button>
+          <button type="submit">Double Click for Messages</button>
         </div>
       </form>
     )
