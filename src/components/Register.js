@@ -32,16 +32,16 @@ export const Register = ({ setToken, token }) => {
 
     }
     return(
-        <form onSubmit={handleSubmit}>
-          <label>
-            <p>Username</p>
-            <input type="text" onChange={event => setUserName(event.target.value)}/>
+        <form onSubmit={handleSubmit} class="register">
+          <label class="box">
+            <p class="hidden">Username</p>
+            <input type="text" onChange={event => setUserName(event.target.value)} placeholder="New User Username..."/>
           </label>
-          <label>
-            <p>Password</p>
-            <input type="password" onChange={event => setPassword(event.target.value)}/>
+          <label class="box">
+            <p class="hidden">Password</p>
+            <input type="password" onChange={event => setPassword(event.target.value)} placeholder="New User Password..."/>
           </label>
-          <div>
+          <div class="box">
             <button type="submit">Register</button>
           </div>
         </form>

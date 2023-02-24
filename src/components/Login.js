@@ -30,16 +30,16 @@ export const Login = ({ setToken, token }) => {
         setToken(userObj.data.token);
     }
     return(
-        <form onSubmit={handleSubmit}>
-          <label>
+        <form onSubmit={handleSubmit} class="login">
+          <label class="box">
             <p>Username</p>
-            <input type="text" onChange={event => setUserName(event.target.value)}/>
+            <input type="text" onChange={event => setUserName(event.target.value)} placeholder="Username..."/>
           </label>
-          <label>
+          <label class="box">
             <p>Password</p>
-            <input type="password" onChange={event => setPassword(event.target.value)}/>
+            <input type="password" onChange={event => setPassword(event.target.value)} placeholder="Password..."/>
           </label>
-          <div>
+          <div class="box">
             <button type="submit">Login</button>
           </div>
         </form>

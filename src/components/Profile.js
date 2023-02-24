@@ -29,7 +29,7 @@ export const Profile = ({ token })  => {
           let Toast = user.data.messages[i].fromUser.username
           let Tomato = user.data.messages[i].post.title
           console.log("String", user.data.messages)
-          container.innerHTML += "From user:" + " " + Toast + " on post:" + " " + Tomato + "<br> message:" + "" + Beans + "<br>"
+          container.innerHTML += "From user:" + " " + Toast + " on post:" + " " + Tomato + "<br> message:" + " " + Beans + "<br>"
           }
         }
 

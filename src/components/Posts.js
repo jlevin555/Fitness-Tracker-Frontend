@@ -46,7 +46,7 @@ const Posts = ({ token }) => {
         fetchData();
       }, []);
     return posts.map((post) => (
-        <div key={post._id}>
+        <div key={post._id} class="posts">
             <div>
                 <h4>{post.title}</h4>
                 <div>Owner: {post._id}</div>
@@ -57,11 +57,12 @@ const Posts = ({ token }) => {
                 <form onSubmit={handleSubmit}>
                     <label>
                         <p>Message Owner</p>
-                        <input type="text" onChange={event => {setcontent(event.target.value);console.log("String 3", event.target.value)}}/>
+                        <input placeholder="Type message here..." type="text" onChange={event => {setcontent(event.target.value);console.log("String 3", event.target.value)}}/>
                     </label>
-                    <input id="post-id" value={post._id}></input>
+                    <br></br>
+                    <input id="post-id" value={post._id} class="hidden"></input>
                     <div>
-                        <button type="submit" >Send Message</button>
+                        <button type="submit" >Double Click to Send Message</button>
                     </div>
                 </form>
             </div> 

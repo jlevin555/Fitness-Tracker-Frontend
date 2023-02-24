@@ -40,24 +40,30 @@ export const NewPost = ({ token }) => {
         <form onSubmit={handleSubmit}>
           <label>
             <p>Title</p>
-            <input type="text" onChange={event => setTitle(event.target.value)}/>
+            <input type="text" onChange={event => setTitle(event.target.value)} placeholder="Title..."/>
           </label>
           <label>
             <p>Description</p>
-            <input type="text" onChange={event => setDescription(event.target.value)}/>
+            <input type="text" onChange={event => setDescription(event.target.value)} placeholder="Description..."/>
           </label>
           <label>
             <p>Price</p>
-            <input type="text" onChange={event => setPrice(event.target.value)}/>
+            <input type="text" onChange={event => setPrice(event.target.value)} placeholder="Price..."/>
           </label>
           <label>
             <p>Location</p>
-            <input type="text" onChange={event => setLocation(event.target.value)}/>
+            <input type="text" onChange={event => setLocation(event.target.value)} placeholder="Location..."/>
           </label>
-          <label>
+          <label class="deliver">
             <p>Will Deliver?</p>
-            <p>Yes</p><input type="checkbox" onChange={event => setDeliver(true)}/>
-            <p>No</p><input type="checkbox" onChange={event => setDeliver(false)}/>
+            <div class="box">
+              <p>Yes</p>
+              <input type="checkbox" onChange={event => setDeliver(true)}/>
+            </div>
+            <div class="box">
+              <p>No</p>
+              <input type="checkbox" onChange={event => setDeliver(false)}/>
+            </div>
           </label>
           <div>
             <button type="submit">Create New Post</button>
