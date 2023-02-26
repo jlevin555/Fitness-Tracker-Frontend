@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import { Header, Login, Register, Posts, NewPost, Profile } from './components';
+import { Header, Login, Register, Posts, NewPost, Profile, Delete } from './components';
 
 function App() {
   const [token, setToken] = useState('');
@@ -10,6 +10,7 @@ function App() {
       <Login setToken={setToken} token={token} />
       <Register setToken={setToken} token={token}/>
       <Profile token={token}/>
+      <Delete token={token}/>
       <NewPost token={token}/>
       <Posts token={token}/>
     </div>

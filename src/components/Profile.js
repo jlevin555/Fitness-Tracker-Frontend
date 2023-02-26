@@ -34,7 +34,7 @@ export const Profile = ({ token })  => {
         }
 
     return (
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div id="container"></div>
         <div>
           <button type="submit">Double Click for Messages</button>
