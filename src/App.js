@@ -10,7 +10,6 @@ function App() {
       <Login setToken={setToken} token={token} />
       <Register setToken={setToken} token={token}/>
       <Profile token={token}/>
-      <Delete token={token}/>
       <NewPost token={token}/>
       <Posts token={token}/>
     </div>

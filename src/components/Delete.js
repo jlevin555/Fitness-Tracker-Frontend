@@ -47,10 +47,7 @@ export const Delete = ({ token }) => {
           container.innerHTML += "Post Title: " + Beans + " <button onClick={handleDelete}>Delete Post (Does not work)</button>" + "<br>"
           }
 
-        const handleDelete = async event => {
-            event.preventDefault();
-            const userObj = await deletePost(token, );
-        }
+
           
         }
         
