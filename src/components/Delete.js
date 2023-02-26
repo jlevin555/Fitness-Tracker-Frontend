@@ -41,10 +41,10 @@ export const Delete = ({ token }) => {
 
         for (let i = 0; i < 10; i++){
           let Beans = user.data.posts[i].title
-          let Toast = user.data.messages[i].fromUser.username
+          let Toast = user.data.posts[i].active
           let Tomato = user.data.messages[i].post.title
           console.log("String", user.data)
-          container.innerHTML += "Post Title: " + Beans + " <button onClick={handleDelete}>Delete Post (Does not work)</button>" + "<br>"
+          container.innerHTML += "Post Title: " + Beans + "<br>" + " Post Deleted?: " + (Toast ? "No" : "Yes") + "<br>"
           }
 
 
@@ -56,7 +56,7 @@ export const Delete = ({ token }) => {
     <form onSubmit={handleSubmit}>
         <div id="delete"></div>
         <div>
-        <button type="submit">Double Click for Posts</button>
+        <button type="submit">Double Click for Last 10 Posts</button>
         </div>
     </form>
   )
