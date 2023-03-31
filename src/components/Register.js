@@ -3,14 +3,23 @@ import { addNewUser, userLogin } from './Fetch'
 
 async function registerUser(credentials) {
   console.log(credentials)
-  return fetch('https://strangers-things.herokuapp.com/api/2211-ftb-et-web-pt/users/register', {
+  const {username, password} = credentials.user
+  console.log("AAAAAAAAA", username, password)
+  return fetch('https://fitnesstrac-kr.herokuapp.com/api/users/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(credentials)
+    body: JSON.stringify({
+      user: {
+        username: username,
+        password: password
+      }
+    })
   })
-    .then(response => response.json())
+    .then(response => {
+      console.log("BBBBBBBBBBBBB", response)
+      response.json()})
     .then(result => {
       console.log(result);
       return result;
@@ -34,11 +43,11 @@ export const Register = ({ setToken, token }) => {
     return(
         <form onSubmit={handleSubmit} class="register">
           <label class="box">
-            <p class="hidden">Username</p>
+            <p>Username</p>
             <input type="text" onChange={event => setUserName(event.target.value)} placeholder="New User Username..."/>
           </label>
           <label class="box">
-            <p class="hidden">Password</p>
+            <p>Password</p>
             <input type="password" onChange={event => setPassword(event.target.value)} placeholder="New User Password..."/>
           </label>
           <div class="box">

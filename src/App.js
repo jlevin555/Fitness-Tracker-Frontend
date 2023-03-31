@@ -1,19 +1,13 @@
 import './App.css';
 import React, { useState } from 'react';
-import { Header, Login, Register, Posts, NewPost, Profile, Delete } from './components';
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { NavBar } from './components';
 
 function App() {
   const [token, setToken] = useState('');
   return (
-    <div className="App">
-      <Header />
-      <Login setToken={setToken} token={token} />
-      <Register setToken={setToken} token={token}/>
-      <Profile token={token}/>
-      <Delete token={token}/>
-      <NewPost token={token}/>
-      <Posts token={token}/>
-    </div>
+    <NavBar token={token} setToken={setToken}/>
   );
 }
 

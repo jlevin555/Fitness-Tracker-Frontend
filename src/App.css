@@ -7,7 +7,7 @@
   background-color: white;
 }
 
-.login {
+login {
   display: flex;
   flex-wrap: wrap;
   justify-content: right;
@@ -19,7 +19,7 @@
   z-index: 1;
 }
 
-.register {
+register {
   display: flex;
   flex-wrap: wrap;
   justify-content: right;
@@ -90,4 +90,9 @@
 
 .nav {
   margin: 10px;
+}
+
+#navbar {
+  padding: 2em;
+  justify-content: space-evenly;
 }

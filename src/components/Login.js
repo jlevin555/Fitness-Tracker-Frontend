@@ -3,7 +3,7 @@ import { addNewUser, userLogin } from './Fetch'
 
 async function loginUser(credentials) {
   console.log(credentials)
-  return fetch('https://strangers-things.herokuapp.com/api/2211-ftb-et-web-pt/users/login', {
+  return fetch('https://fitnesstrac-kr.herokuapp.com/api/users/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -28,6 +28,7 @@ export const Login = ({ setToken, token }) => {
           password}
         });
         setToken(userObj.data.token);
+        console.log("MMMMMMMMMMMMMMMMMM", token, username, password)
     }
     return(
         <form onSubmit={handleSubmit} class="login">
@@ -49,3 +50,4 @@ export const Login = ({ setToken, token }) => {
 
 
 export default Login;
+
