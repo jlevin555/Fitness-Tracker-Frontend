@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { fetchAllPosts } from './Fetch'
 import { renderAllPosts, renderNewPostForm, renderLogin, renderRegister } from './Render'
 
-const fetchAllRoutines = async () => {
+const fetchAllRoutines = async ( username, token ) => {
     try {
-        const response = await fetch(`https://fitness-tracker-gsjx.onrender.com/api/routines`);
+        const response = await fetch(`https://fitness-tracker-gsjx.onrender.com/api/users/${username}/allroutines`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+            });
         const result = await response.json();
         if (result.error) {
             throw result.error;
@@ -16,36 +21,12 @@ const fetchAllRoutines = async () => {
 };
 
 
-const Routines = ({ token }) => {
+const MyRoutines = ({ token, user }) => {
     const [routines, setRoutines] = useState([])
-    // const [id, setid] = useState()
-    // const [content, setcontent] = useState("");
-    // const [stuff, setStuff] = useState("");
-    
-    // const handleSubmit = async event => {
-    //   console.log("String", event)
-    //     event.preventDefault();
-    //     const arr = {
-    //         name: {content},
-    //         description: {stuff},
-
-    //     }
-    //     // console.log("String 2", obj)
-    //     // setid(event.target[1].value)
-    //     // await messageUser(obj, token, id)
-    // }
-
-//     const handleDelete = async event => {
-//       event.preventDefault();
-//       setid(event.target[0].value)
-//       await deletePost(token, id);
-//       console.log("String 5", event.target[0].value)
-
-//   }
 
     useEffect(() => {
         const fetchData = async () => {
-          const result = await fetchAllRoutines();
+          const result = await fetchAllRoutines(user, token);
           setRoutines(result);
 
         };
@@ -81,4 +62,4 @@ const Routines = ({ token }) => {
     //renderNewPostForm()
 }
 
-export default Routines;
+export default MyRoutines;

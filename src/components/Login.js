@@ -3,7 +3,7 @@ import { addNewUser, userLogin } from './Fetch'
 
 async function loginUser(credentials) {
   console.log(credentials)
-  return fetch('https://fitnesstrac-kr.herokuapp.com/api/users/login', {
+  return fetch('https://fitness-tracker-gsjx.onrender.com/api/users/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -18,17 +18,19 @@ async function loginUser(credentials) {
     .catch(console.error);
 }
 
-export const Login = ({ setToken, token }) => {
+export const Login = ({ setToken, token, user, setUser }) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const handleSubmit = async event => {
         event.preventDefault();
         const userObj = await loginUser({
-          user: {username,
-          password}
+          username,
+          password
         });
-        setToken(userObj.data.token);
-        console.log("MMMMMMMMMMMMMMMMMM", token, username, password)
+        console.log("MMMMMMMMMMMMMMMMMM", userObj.token, userObj.user.username)
+        setToken(userObj.token);
+        setUser(userObj.user.username)
+        
     }
     return(
         <form onSubmit={handleSubmit} class="login">

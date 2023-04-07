@@ -4,7 +4,7 @@ import { renderAllPosts, renderNewPostForm, renderLogin, renderRegister } from '
 
 const fetchAllActivities = async () => {
     try {
-        const response = await fetch(`https://fitnesstrac-kr.herokuapp.com/api/activities`);
+        const response = await fetch(`https://fitness-tracker-gsjx.onrender.com/api/activities`);
         const result = await response.json();
         if (result.error) {
             throw result.error;

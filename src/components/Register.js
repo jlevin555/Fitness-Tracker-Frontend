@@ -5,29 +5,29 @@ async function registerUser(credentials) {
   console.log(credentials)
   const {username, password} = credentials.user
   console.log("AAAAAAAAA", username, password)
-  return fetch('https://fitnesstrac-kr.herokuapp.com/api/users/register', {
+  try {
+  const response = await fetch('https://fitness-tracker-gsjx.onrender.com/api/users/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      user: {
         username: username,
         password: password
-      }
     })
   })
-    .then(response => {
-      console.log("BBBBBBBBBBBBB", response)
-      response.json()})
-    .then(result => {
-      console.log(result);
-      return result;
-    })
-    .catch(console.error);
+
+      const result = await response.json()
+      console.log(result)
+      return result
+
+    } catch (error) {
+      console.log(error)
+    }
+    
 }
 
-export const Register = ({ setToken, token }) => {
+export const Register = ({ setToken, token, user, setUser }) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const handleSubmit = async event => {
@@ -36,7 +36,9 @@ export const Register = ({ setToken, token }) => {
           user: {username,
           password}
         });
-        setToken(userObj.data.token);
+        console.log("MMMMMMMMMMMMMMMMMM", userObj.token, userObj.user.username)
+        setToken(userObj.token);
+        setUser(userObj.user.username)
 
 
     }
