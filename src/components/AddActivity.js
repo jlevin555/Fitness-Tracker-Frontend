@@ -13,6 +13,9 @@ async function addNewActivity(postObj, userToken) {
       .then(response => response.json())
       .then(result => {
         console.log("BBBBBBBBBBBBBBB", result);
+        if (result.error === "Name already exists") {
+          window.alert("An activity with that name already exists")
+        }
         return result;
       })
       .catch(console.error);
