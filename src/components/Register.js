@@ -19,6 +19,14 @@ async function registerUser(credentials) {
 
       const result = await response.json()
       console.log(result)
+      if (result.error === "Duplicate Username") {
+        window.alert("Username is already taken")
+      }
+
+      if (result.error === "Short password") {
+        window.alert("Password Too Short")
+      }
+
       return result
 
     } catch (error) {

@@ -53,6 +53,24 @@ const attachActivity = async ( routineId, obj ) => {
     }
 };
 
+const deleteRoutine = async ( routineId, token ) => {
+  try {
+      const response = await fetch(`https://fitness-tracker-gsjx.onrender.com/api/routines/${routineId}`, {
+        method: "DELETE",
+        headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+        },
+      });
+      const result = await response.json();
+      if (result.error) {
+          throw result.error;
+      }
+      return result;
+    } catch (error) {
+      console.error('Error deleting', error);
+    }
+};
 
 const MyRoutines = ({ token, setToken, user }) => {
     const [routines, setRoutines] = useState([])
@@ -94,10 +112,23 @@ const MyRoutines = ({ token, setToken, user }) => {
           await attachActivity(routineId, obj);
       }
 
+      const handleDelete = async event => {
+        event.preventDefault();
+        setroutineId(event.target[1].value)
+        console.log("String", routineId)
+        await deleteRoutine(routineId, token);
+      }
+
     return routines.map((routine) => (
         <div key={routine.id} class="routine">
             <div>
                 <h4>{routine.name}</h4>
+                <form onSubmit={handleDelete}>
+                    <div>
+                        <button type="submit">Double Click to Delete Routine</button>
+                        <input value={routine.id} class="hidden"></input>
+                    </div>
+                </form>
                 <div>Id: {routine.id}</div> 
                 <div>Creator Id: {routine.creatorId}</div> 
                 <div>Creator Name: {routine.creatorName}</div> 

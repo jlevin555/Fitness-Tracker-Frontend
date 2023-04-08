@@ -7,7 +7,7 @@ export const NavBar = ({ token, setToken }) => {
     return (
         <>
         <div className='navigation'>
-            <Link className='home' to='/home'>Home</Link>
+            <Link className='home' to='/'>Home</Link>
             <Link className='login' to='/login'>Login</Link>
             <Link className='register' to='/register'>Register</Link>
             <Link className='activities' to='/activities'>Activities</Link>
@@ -21,7 +21,7 @@ export const NavBar = ({ token, setToken }) => {
             {/* <Link className='logout' onClick={(event) => logout(event)}>Log Out</Link> */}
         </div>
             <Routes>
-                    <Route path='/home' element={<Home token={token} setToken={setToken} />}/>
+                    <Route path='/' element={<Home token={token} setToken={setToken} />}/>
                     <Route path='/login' element={<Login token={token} setToken={setToken} user={user} setUser={setUser} />}/>
                     <Route path='/register' element={<Register token={token} setToken={setToken} user={user} setUser={setUser} />}/>
                     <Route path='/activities' element={<Activities token={token} setToken={setToken} />}/>

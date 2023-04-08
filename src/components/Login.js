@@ -13,6 +13,15 @@ async function loginUser(credentials) {
     .then(response => response.json())
     .then(result => {
       console.log(result);
+
+      if (result.message === "User does not exist") {
+        window.alert("Username does not exist")
+      }
+
+      if (result.message === "Password is incorrect") {
+        window.alert("Password incorrect")
+      }
+
       return result
     })
     .catch(console.error);
