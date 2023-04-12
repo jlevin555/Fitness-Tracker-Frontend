@@ -3,10 +3,10 @@ import React from 'react';
 export const Header = () => {
     return <div class="header">
         <h1>
-            Stranger's Things
+            Fitness Tracker
         </h1>
         <h5>
-            Basically craigslist
+            Pump it Up!
         </h5>
     </div>
 };

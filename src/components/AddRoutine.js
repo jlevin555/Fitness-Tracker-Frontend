@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 async function addNewRoutine(postObj, userToken) {
     console.log("AAAAAAAAAAAAAAA", postObj, userToken)
@@ -37,26 +37,39 @@ export const AddRoutine = ({ token }) => {
     return (    
         <form onSubmit={handleSubmit}>
           <label>
-            <p>Name</p>
-            <input type="text" onChange={event => setName(event.target.value)} placeholder="Name..."/>
+            <p>Name of New Routine:</p>
+              <input 
+                type="text" 
+                onChange={event => setName(event.target.value)} 
+                placeholder="Name..."
+              />
           </label>
           <label>
-            <p>Goal</p>
-            <input type="text" onChange={event => setGoal(event.target.value)} placeholder="Goal..."/>
+            <p>Goal:</p>
+              <input 
+                type="text" 
+                onChange={event => setGoal(event.target.value)} 
+                placeholder="Goal..."
+              />
           </label>
           <label class="isPublic">
-            <p>Public?</p>
-            <div class="box">
-              <p>Yes</p>
-              <input type="checkbox" onChange={event => setIsPublic(true)}/>
-            </div>
-            <div class="box">
-              <p>No</p>
-              <input type="checkbox" onChange={event => setIsPublic(false)}/>
-            </div>
+            <p>Public Routine?</p>
+            <select 
+                type='boolean' 
+                value={isPublic} 
+                onChange={(event) => {setIsPublic(event.target.value)}}
+            >
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br/>
           </label>
           <div>
-            <button type="submit">Create New Routine</button>
+            <br/>
+            <button 
+              type="submit">
+              Create New Routine
+            </button>
           </div>
         </form>
     )

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAllPosts } from './Fetch'
-import { Activities, renderNewPostForm, renderLogin, renderRegister } from './'
 
 const fetchAllRoutines = async ( username, token ) => {
     try {
@@ -135,14 +133,14 @@ const MyRoutines = ({ token, setToken, user }) => {
     const [routines, setRoutines] = useState([])
     const [open, setOpen] = useState(false);
     const [activities, setActivities] = useState([])
-    const [activityId, setactivityId] = useState()
-    const [routineId, setroutineId] = useState()
-    const [count, setcount] = useState()
-    const [duration, setduration] = useState()
-    const [name, setName] = useState();
-    const [goal, setGoal] = useState();
-    const [isPublic, setIsPublic] = useState();
-    const [routineActivityId, setroutineActivityId] = useState()
+    const [activityId, setactivityId] = useState('')
+    const [routineId, setroutineId] = useState('')
+    const [count, setcount] = useState('')
+    const [duration, setduration] = useState('')
+    const [name, setName] = useState('');
+    const [goal, setGoal] = useState('');
+    const [isPublic, setIsPublic] = useState('');
+    const [routineActivityId, setroutineActivityId] = useState('')
 
     useEffect(() => {
         const fetchData = async () => {
@@ -210,6 +208,7 @@ const MyRoutines = ({ token, setToken, user }) => {
       }
 
     return routines.map((routine) => (
+      
         <div key={routine.id} class="routine">
             <div>
                 <h4>{routine.name}</h4>
@@ -217,54 +216,83 @@ const MyRoutines = ({ token, setToken, user }) => {
                     <div>
                         <label>
                           <p>Name</p>
-                          <input type="text" onChange={event => setName(event.target.value)} placeholder="Name..."/>
+                            <input 
+                              type="text" 
+                              onChange={event => setName(event.target.value)} 
+                              placeholder="Name..."
+                            />
                         </label>
                         <label>
                           <p>Goal</p>
-                          <input type="text" onChange={event => setGoal(event.target.value)} placeholder="Goal..."/>
+                            <input 
+                              type="text" 
+                              onChange={event => setGoal(event.target.value)} 
+                              placeholder="Goal..."
+                            />
                         </label>
                         <label class="isPublic">
-                          <p>Public?</p>
-                          <div class="box">
-                            <p>Yes</p>
-                            <input type="checkbox" onChange={event => setIsPublic(true)}/>
-                          </div>
-                          <div class="box">
-                            <p>No</p>
-                            <input type="checkbox" onChange={event => setIsPublic(false)}/>
-                          </div>
+                          <p>Public Routine?</p>
+                                  <select 
+                                      type='boolean' 
+                                      value={isPublic} 
+                                      onChange={(event) => {setIsPublic(event.target.value)}}
+                                  >
+                                      <option value="Yes">Yes</option>
+                                      <option value="No">No</option>
+                                  </select>
                         </label>
-                        <button type="submit">Double Click to Update Routine</button>
-                        <input value={routine.id} class="hidden"></input>
+                        <br/>
+                          <button 
+                            type="submit">
+                              Double Click to Update Routine
+                          </button>
+                            <input 
+                              value={routine.id} class="hidden"
+                            >
+                            </input>
                     </div>
                 </form>
                 <form onSubmit={handleDelete}>
                     <div>
                         <button type="submit">Double Click to Delete Routine</button>
-                        <input value={routine.id} class="hidden"></input>
+                          <input value={routine.id} class="hidden"></input>
                     </div>
                 </form>
+
+                <h1>My Created Routines</h1>
                 <div>Id: {routine.id}</div> 
                 <div>Creator Id: {routine.creatorId}</div> 
                 <div>Creator Name: {routine.creatorName}</div> 
                 <div>Public: {routine.isPublic ? "Yes" : "No"}</div> 
                 <div>Goal: {routine.goal}</div> 
                 <div class="dropdown">
-                  Attach Activities
+                  <h2>
+                    Attach Activities:
+                  </h2>
                   <button onClick={handleOpen} class="dropbtn">Dropdown</button>
                   <div>
                     {open ? activities.map((activity) => (
                       <div key={activity.id} class="routine">
                           <form onSubmit={handleAttach}>
-                              <button type="submit">Double Click To Attach Activity</button>
+                              <button type="submit">
+                                Double Click To Attach Activity
+                              </button>
                               <h5>{activity.name}</h5>
                               <label>
                                 <p>Count</p>
-                                <input type="number" onChange={event => setcount(event.target.value)} placeholder="Count..."/>
+                                <input 
+                                  type="number" 
+                                  onChange={event => setcount(event.target.value)} 
+                                  placeholder="Count..."
+                                />
                               </label>
                               <label>
                                 <p>Duration</p>
-                                <input type="number" onChange={event => setduration(event.target.value)} placeholder="Duration..."/>
+                                <input 
+                                  type="number" 
+                                  onChange={event => setduration(event.target.value)} 
+                                  placeholder="Duration..."
+                                />
                               </label>
                               <div>id: {activity.id}</div> 
                               <div>Description: {activity.description}</div> 
@@ -275,16 +303,26 @@ const MyRoutines = ({ token, setToken, user }) => {
                     )) : null}
                   </div>
                 </div>
-                <div>Activities: {routine.activities.map((activity) => (
+                <div>
+                  <h3>Activities:</h3> 
+                  {routine.activities.map((activity) => (
                     <div key={activity.id} class="inner">
                         <form onSubmit={handleActDelete}>
                             <div>
-                                <button type="submit">Double Click to Delete Activity from Routine</button>
-                                <input value={activity.routineActivityId} class="hidden"></input>
+                                <button 
+                                    type="submit">
+                                      Double Click to Delete Activity from Routine
+                                </button>
+                                <input 
+                                  value={activity.routineActivityId} 
+                                  class="hidden">
+                                </input>
                             </div>
                         </form>
-                        <div>Id: {activity.id}</div> 
-                        <div>Name: {activity.name}</div> 
+                        <div>
+                          <h3>Name:</h3> 
+                          {activity.name}</div>
+                        <div>Id: {activity.id}</div>
                         <div>Description: {activity.description}</div> 
                         <div>Duration: {activity.duration}</div> 
                         <div>Count: {activity.count}</div> 
@@ -292,27 +330,39 @@ const MyRoutines = ({ token, setToken, user }) => {
                             <div>
                               <label>
                                 <p>Count</p>
-                                <input type="number" onChange={event => setcount(event.target.value)} placeholder="Count..."/>
+                                <input 
+                                  type="number" 
+                                  onChange={event => setcount(event.target.value)} 
+                                  placeholder="Count..."
+                                />
                               </label>
                               <label>
                                 <p>Duration</p>
-                                <input type="number" onChange={event => setduration(event.target.value)} placeholder="Duration..."/>
+                                <input 
+                                  type="number" 
+                                  onChange={event => setduration(event.target.value)} 
+                                  placeholder="Duration..."
+                                />
                               </label>
-                                <button type="submit">Double Click to Update Activity</button>
-                                <input value={activity.routineActivityId} class="hidden"></input>
+                                <button type="submit">
+                                  Double Click to Update Activity
+                                </button>
+                                <input 
+                                  value={activity.routineActivityId} 
+                                  class="hidden">
+                                </input>
                             </div>
                         </form>
-                        <div>RoutineActivityId: {activity.routineActivityId}</div> 
-                        <div>RoutineId: {activity.routineId}</div> 
+                        <div>RoutineActivityId: 
+                          {activity.routineActivityId}
+                        </div> 
+                        <div>RoutineId: 
+                          {activity.routineId}
+                        </div> 
                     </div>))}</div> 
             </div> 
         </div>
     ))
-
-    //renderAllPosts(posts)
-    //renderLogin()
-    //renderRegister()
-    //renderNewPostForm()
 }
 
 export default MyRoutines;

@@ -7,28 +7,9 @@
   background-color: white;
 }
 
-login {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: right;
-  align-items: end;
-  position: absolute;
-  top: 0;
-  left: 70%; 
-  color: rgb(255, 255, 255);
-  z-index: 1;
-}
-
-register {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: right;
-  align-items: end;
-  position: absolute;
-  top: 3%;
-  left: 70%;
-  color: rgb(255, 255, 255);
-
+.container {
+  background-color: #efeae2;
+  
 }
 
 .box {
@@ -39,16 +20,6 @@ register {
   visibility: hidden;
 }
 
-.new-post {
-  display: flex;
-  flex-direction: flex-start;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .header {
   background-color: rgb(85, 12, 85);
@@ -56,37 +27,6 @@ register {
   width: 100%;
 }
 
-.posts {
-  background-color: rgb(231, 231, 231);
-  display: flex;
-  flex-wrap: wrap;
-  width: 1000px;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 5px;
-  justify-content: center;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.deliver {
-  display: flex;
-  flex-direction: center;
-  justify-content: center;
-  align-items: end;
-}
-
-#footer {
-  margin: 10px;
-}
 
 .nav {
   margin: 10px;
@@ -95,6 +35,73 @@ register {
 #navbar {
   padding: 2em;
   justify-content: space-evenly;
+}
+
+.navigation {
+  display: flex;
+  padding: 5px;
+  align-content:flex-end;
+  justify-content:end;
+  background-image: linear-gradient(rgb(5, 5, 170), rgb(175, 6, 175));
+}
+
+.loginForm, .registerForm {
+  
+  padding: 5px;
+  background-image: linear-gradient(rgb(175, 6, 175), rgb(51, 51, 228));
+}
+
+.home, .login, .register, .activities, 
+.routines, .addRoutine, .myroutines, 
+.addactivity, .logout {
+  display: flex;
+  padding: 5px;
+  margin: 5px;
+  background-color:aqua ;
+  font:bold;
+  border: solid black
+  
+}
+
+
+@media (max-width: 800px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  nav ul.show {
+    display: flex;
+  }
+  
+  .nav-button {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+    nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  nav ul.show {
+    display: flex;
+  }
+  
+  .nav-button {
+    display: block;
+  }
+}
+
+.routine {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 15px;
 }
 
 .dropbtn {

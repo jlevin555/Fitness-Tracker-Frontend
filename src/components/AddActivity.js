@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 async function addNewActivity(postObj, userToken) {
     console.log("AAAAAAAAAAAAAAA", postObj, userToken)
@@ -40,15 +40,27 @@ export const AddActivity = ({ token }) => {
     return (    
         <form onSubmit={handleSubmit}>
           <label>
-            <p>Name</p>
-            <input type="text" onChange={event => setName(event.target.value)} placeholder="Name..."/>
+            <p>Name of New Activity:</p>
+              <input 
+                type="text" 
+                onChange={event => setName(event.target.value)} 
+                placeholder="Name..."
+              />
           </label>
           <label>
-            <p>Goal</p>
-            <input type="text" onChange={event => setDescription(event.target.value)} placeholder="Description..."/>
+            <p>Goal:</p>
+              <input 
+                type="text" 
+                onChange={event => setDescription(event.target.value)} 
+                placeholder="Description..."
+              />
           </label>
           <div>
-            <button type="submit">Create New Activity</button>
+            <br/>
+            <button 
+              type="submit">
+                Create New Activity
+            </button>
           </div>
         </form>
     )

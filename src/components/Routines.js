@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAllPosts } from './Fetch'
-import { renderAllPosts, renderNewPostForm, renderLogin, renderRegister } from './Render'
+import { Routes, Route, Link } from "react-router-dom";
+import { UserRoutines } from '.'
 
 const fetchAllRoutines = async () => {
     try {
@@ -15,33 +15,29 @@ const fetchAllRoutines = async () => {
       }
 };
 
+const fetchUserRoutines = async (username) => {
+    try {
+        const response = await fetch(`https://fitness-tracker-gsjx.onrender.com/api/users/${username}/routines`);
+        const result = await response.json();
+        if (result.error) {
+            throw result.error;
+        }
+        console.log(result)
+        return result;
+      } catch (error) {
+        console.error('Error fetching things', error);
+      }
+};
+
+
+
 
 const Routines = ({ token }) => {
     const [routines, setRoutines] = useState([])
-    // const [id, setid] = useState()
-    // const [content, setcontent] = useState("");
-    // const [stuff, setStuff] = useState("");
+    const [name, setName] = useState();
+    const [open, setOpen] = useState(false);
+    const [userR, setuserR] = useState([]);
     
-    // const handleSubmit = async event => {
-    //   console.log("String", event)
-    //     event.preventDefault();
-    //     const arr = {
-    //         name: {content},
-    //         description: {stuff},
-
-    //     }
-    //     // console.log("String 2", obj)
-    //     // setid(event.target[1].value)
-    //     // await messageUser(obj, token, id)
-    // }
-
-//     const handleDelete = async event => {
-//       event.preventDefault();
-//       setid(event.target[0].value)
-//       await deletePost(token, id);
-//       console.log("String 5", event.target[0].value)
-
-//   }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -52,16 +48,36 @@ const Routines = ({ token }) => {
     
         fetchData();
       }, []);
+
+      const handleUserRoutines = async event => {
+        event.preventDefault();
+        setName(event.target[1].value)
+        console.log("Stringstringstring", event)
+      }
+      
     return routines.map((routine) => (
         <div key={routine.id} class="routine">
             <div>
-                <h4>{routine.name}</h4>
+                <h1>{routine.name}</h1>
                 <div>Id: {routine.id}</div> 
                 <div>Creator Id: {routine.creatorId}</div> 
                 <div>Creator Name: {routine.creatorName}</div> 
+                <form onSubmit={handleUserRoutines}>
+                    <div>
+                        <button type="submit">
+                            <Link className='userroutines' to='/user/routines'>
+                                View User Routines (DOES NOT WORK YET)
+                            </Link>
+                        </button>
+                        <Routes>
+                            <Route path='/user/routines' element={<UserRoutines name={ name }/>} />
+                        </Routes>
+                        <input value={routine.creatorName} class="hidden"></input>
+                    </div>
+                </form>                
                 <div>Public: {routine.isPublic ? "Yes" : "No"}</div> 
                 <div>Goal: {routine.goal}</div> 
-                <div>Activities: {routine.activities.map((activity) => (
+                <div><h3>Activities:</h3> {routine.activities.map((activity) => (
                     <div key={activity.id} class="inner">
                         <div>Id: {activity.id}</div> 
                         <div>Name: {activity.name}</div> 
@@ -74,11 +90,6 @@ const Routines = ({ token }) => {
             </div> 
         </div>
     ))
-
-    //renderAllPosts(posts)
-    //renderLogin()
-    //renderRegister()
-    //renderNewPostForm()
 }
 
 export default Routines;

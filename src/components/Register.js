@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { addNewUser, userLogin } from './Fetch'
+import React, { useState } from 'react';
+
 
 async function registerUser(credentials) {
   console.log(credentials)
@@ -17,7 +17,8 @@ async function registerUser(credentials) {
     })
   })
 
-      const result = await response.json()
+      const result = await response.json();
+      localStorage.setItem('token', result.token)
       console.log(result)
       if (result.error === "Duplicate Username") {
         window.alert("Username is already taken")
@@ -26,7 +27,7 @@ async function registerUser(credentials) {
       if (result.error === "Short password") {
         window.alert("Password Too Short")
       }
-
+      
       return result
 
     } catch (error) {
@@ -44,21 +45,33 @@ export const Register = ({ setToken, token, user, setUser }) => {
           user: {username,
           password}
         });
+        
         console.log("MMMMMMMMMMMMMMMMMM", userObj.token, userObj.user.username)
         setToken(userObj.token);
         setUser(userObj.user.username)
+        localStorage.setItem('token', userObj.token)
+        event.target.reset();
 
 
     }
     return(
-        <form onSubmit={handleSubmit} class="register">
+        <form onSubmit={handleSubmit} class="registerForm">
           <label class="box">
+            <h4>Please Register New Account</h4>
             <p>Username</p>
-            <input type="text" onChange={event => setUserName(event.target.value)} placeholder="New User Username..."/>
+              <input 
+                type="text" 
+                onChange={event => setUserName(event.target.value)} 
+                placeholder="New User Username..."
+              />
           </label>
           <label class="box">
             <p>Password</p>
-            <input type="password" onChange={event => setPassword(event.target.value)} placeholder="New User Password..."/>
+              <input 
+                type="password" 
+                onChange={event => setPassword(event.target.value)} 
+                placeholder="New User Password..."
+              />
           </label>
           <div class="box">
             <button type="submit">Register</button>
