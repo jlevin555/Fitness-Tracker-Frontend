@@ -7,7 +7,7 @@ export const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksI…3NTZ9
 function App() {
   const [token, setToken] = useState('');
   
-  useEffect((token) => {
+  useEffect(() => {
     const savedToken = localStorage.getItem('token', token)
     if(savedToken) {
       setToken(savedToken)
